@@ -1,22 +1,23 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SwitchButton : MonoBehaviour
 {
-    [SerializeField] private Transform _alphabetClock; // The object to rotate
-    [SerializeField] private float rotationDuration = 1f; // Duration of rotation in seconds
+    [SerializeField] private Transform _alphabetClock;
+    [SerializeField] private float _rotationDuration = 1f;
+    [SerializeField] private Transform _decipherDisplay;
     
-    private Button button; // Reference to the Button component
-    private bool isRotating = false; // Track if rotation is in progress
-    private Quaternion startRotation; // Starting rotation
-    private Quaternion targetRotation; // Target rotation
-    private float rotationProgress = 0f; // Progress of rotation (0 to 1)
+    private Button _button;
+    private bool _isRotating = false;
+    private Quaternion _startRotation;
+    private Quaternion _targetRotation;
+    private float _rotationProgress = 0f;
 
     void Start()
     {
-        // Get the Button component
-        button = GetComponent<Button>();
-        if (button == null)
+        _button = GetComponent<Button>();
+        if (_button == null)
         {
             Debug.LogError("SwitchButton requires a Button component!");
             return;
@@ -27,52 +28,49 @@ public class SwitchButton : MonoBehaviour
             Debug.LogError("_alphabetClock not assigned in SwitchButton!");
             return;
         }
-
-        // Set up the button click event
-        button.onClick.AddListener(StartRotation);
+        if (_decipherDisplay == null)
+        {
+            Debug.LogError("_decipherDisplay not assigned in SwitchButton!");
+            return;
+        }
+        _decipherDisplay.localPosition = new Vector3(_decipherDisplay.localPosition.x, _decipherDisplay.localPosition.y, _decipherDisplay.localPosition.z * -1f);
+        
+        _button.onClick.AddListener(StartRotation);
     }
 
     void Update()
     {
-        if (isRotating)
+        if (_isRotating)
         {
-            // Increment progress based on time
-            rotationProgress += Time.deltaTime / rotationDuration;
-
-            // Interpolate rotation
-            _alphabetClock.rotation = Quaternion.Slerp(startRotation, targetRotation, rotationProgress);
-
-            // Check if rotation is complete
-            if (rotationProgress >= 1f)
+            _rotationProgress += Time.deltaTime / _rotationDuration;
+            _alphabetClock.rotation = Quaternion.Slerp(_startRotation, _targetRotation, _rotationProgress);
+            if (_rotationProgress >= 1f)
             {
-                isRotating = false;
-                rotationProgress = 0f;
-                _alphabetClock.rotation = targetRotation; // Ensure exact final rotation
-                button.interactable = true; // Re-enable button
+                _isRotating = false;
+                _rotationProgress = 0f;
+                _alphabetClock.rotation = _targetRotation;
+                _button.interactable = true;
             }
         }
     }
 
     private void StartRotation()
     {
-        if (isRotating) return; // Prevent starting new rotation while one is in progress
-
-        // Disable button
-        button.interactable = false;
-
-        // Set up rotation
-        isRotating = true;
-        startRotation = _alphabetClock.rotation;
-        targetRotation = startRotation * Quaternion.Euler(0f, 180f, 0f); // Add 180° on Y-axis
-        rotationProgress = 0f;
+        if (_isRotating) return;
+        _button.interactable = false;
+        _isRotating = true;
+        _startRotation = _alphabetClock.rotation;
+        _targetRotation = _startRotation * Quaternion.Euler(0f, 180f, 0f);
+        _rotationProgress = 0f;
+        _decipherDisplay.localPosition = new Vector3(_decipherDisplay.localPosition.x, _decipherDisplay.localPosition.y, _decipherDisplay.localPosition.z * -1f);
     }
 
     // Clean up
     void OnDestroy()
     {
-        if (button != null)
+        if (_button != null)
         {
-            button.onClick.RemoveListener(StartRotation);
+            _button.onClick.RemoveListener(StartRotation);
         }
     }
 }

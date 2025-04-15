@@ -1,60 +1,61 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LockButton : MonoBehaviour
 {
-    [SerializeField] private MinuteHand minuteHand;
-    [SerializeField] private ClockHandsController[] handControllers;
-    [SerializeField] private Transform hourHand;
+    [SerializeField] private MinuteHand _minuteHand;
+    [SerializeField] private ClockHandsController[] _handControllers;
+    [SerializeField] private Transform _hourHand;
     
-    private Button lockButton;
-    private bool isLocked = false;
-    private Quaternion savedMinuteRotation;
-    private Quaternion savedHourRotation;
-    private float rotationDuration = 1f;
-    private float rotationProgress = 0f;
-    private bool isReturning = false;
+    private Button _lockButton;
+    private bool _isLocked = false;
+    private Quaternion _savedMinuteRotation;
+    private Quaternion _savedHourRotation;
+    private const float _rotationDuration = 1f;
+    private float _rotationProgress = 0f;
+    private bool _isReturning = false;
 
     void Start()
     {
-        lockButton = GetComponent<Button>();
-        if (lockButton == null)
+        _lockButton = GetComponent<Button>();
+        if (_lockButton == null)
         {
             Debug.LogError("LockButton requires a Button component!");
             return;
         }
         
-        if (minuteHand == null || hourHand == null || handControllers.Length != 2)
+        if (_minuteHand == null || _hourHand == null || _handControllers.Length != 2)
         {
             Debug.LogError("Missing references in LockButton!");
             return;
         }
 
-        lockButton.onClick.AddListener(ToggleLockState);
+        _lockButton.onClick.AddListener(ToggleLockState);
     }
 
     void Update()
     {
-        if (isReturning)
+        if (_isReturning)
         {
-            rotationProgress += Time.deltaTime / rotationDuration;
-            minuteHand.transform.rotation = Quaternion.Slerp(minuteHand.transform.rotation, 
-                savedMinuteRotation, rotationProgress);
-            hourHand.rotation = Quaternion.Slerp(hourHand.rotation, 
-                savedHourRotation, rotationProgress);
+            _rotationProgress += Time.deltaTime / _rotationDuration;
+            _minuteHand.transform.rotation = Quaternion.Slerp(_minuteHand.transform.rotation, 
+                _savedMinuteRotation, _rotationProgress);
+            _hourHand.rotation = Quaternion.Slerp(_hourHand.rotation, 
+                _savedHourRotation, _rotationProgress);
 
-            if (rotationProgress >= 1f)
+            if (_rotationProgress >= 1f)
             {
-                isReturning = false;
-                rotationProgress = 0f;
-                minuteHand.transform.rotation = savedMinuteRotation;
-                hourHand.rotation = savedHourRotation;
-                minuteHand.enabled = true;
-                foreach (var controller in handControllers)
+                _isReturning = false;
+                _rotationProgress = 0f;
+                _minuteHand.transform.rotation = _savedMinuteRotation;
+                _hourHand.rotation = _savedHourRotation;
+                _minuteHand.IsLocked = true;
+                foreach (var controller in _handControllers)
                 {
                     controller.enabled = true;
                 }
-                lockButton.interactable = true;
+                _lockButton.interactable = true;
                 Debug.Log("LockButton: Return complete, functionality restored");
             }
         }
@@ -62,44 +63,44 @@ public class LockButton : MonoBehaviour
 
     private void ToggleLockState()
     {
-        if (isReturning) return;
+        if (_isReturning) return;
 
-        isLocked = !isLocked;
-        lockButton.interactable = false;
+        _isLocked = !_isLocked;
+        _lockButton.interactable = false;
 
-        if (isLocked)
+        if (_isLocked)
         {
-            minuteHand.enabled = false;
-            foreach (var controller in handControllers)
+            _minuteHand.IsLocked = false;
+            foreach (var controller in _handControllers)
             {
                 controller.enabled = false; // Temporarily disable to reset state
-                controller.SetDualRotationMode(true, hourHand);
+                controller.SetDualRotationMode(true, _hourHand);
                 controller.enabled = true;  // Re-enable with new mode
             }
-            savedMinuteRotation = minuteHand.transform.rotation;
-            savedHourRotation = hourHand.rotation;
-            lockButton.interactable = true;
-            Debug.Log("LockButton: Locked - Both hands should rotate together now");
+            _savedMinuteRotation = _minuteHand.transform.rotation;
+            _savedHourRotation = _hourHand.rotation;
+            _lockButton.interactable = true;
+            //Debug.Log("LockButton: Locked - Both hands should rotate together now");
         }
         else
         {
-            foreach (var controller in handControllers)
+            foreach (var controller in _handControllers)
             {
                 controller.enabled = false; // Temporarily disable to reset state
                 controller.SetDualRotationMode(false, null);
                 controller.enabled = true;  // Re-enable with normal mode
             }
-            isReturning = true;
-            rotationProgress = 0f;
-            Debug.Log("LockButton: Unlocking - Returning to saved positions");
+            _isReturning = true;
+            _rotationProgress = 0f;
+            //Debug.Log("LockButton: Unlocking - Returning to saved positions");
         }
     }
 
     void OnDestroy()
     {
-        if (lockButton != null)
+        if (_lockButton != null)
         {
-            lockButton.onClick.RemoveListener(ToggleLockState);
+            _lockButton.onClick.RemoveListener(ToggleLockState);
         }
     }
 }

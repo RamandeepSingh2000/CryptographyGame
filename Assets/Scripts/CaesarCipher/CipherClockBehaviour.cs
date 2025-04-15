@@ -36,7 +36,7 @@ public class CipherClockBehaviour : MonoBehaviour, IPointerEnterHandler, IPointe
         if (!isInteractable) return;
 
         highlightedClock.SetActive(true);
-        Debug.Log(eventData.position);
+        //Debug.Log(eventData.position);
     }
     
     public void OnPointerExit(PointerEventData eventData)

@@ -8,7 +8,7 @@ public class Kcalculator : MonoBehaviour
     [SerializeField] private bool _useLocalRotation = true;
     [SerializeField] private TMP_Text _kVariable;
 
-    public int NormalizedValue { get; private set; }  // Changed to int
+    public int NormalizedValue { get; private set; } 
     public float CurrentDifference { get; private set; }
 
     void Start()
@@ -39,8 +39,6 @@ public class Kcalculator : MonoBehaviour
     [ContextMenu("Log Current Difference")]
     private void LogDifference()
     {
-        
-        
         _kVariable.text = "k = " + NormalizedValue;
     }
 }
