@@ -1,66 +1,60 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class CipherClockBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+namespace CaesarCipher
 {
-    [SerializeField] private GameObject highlightedClock; // The highlighted mesh
-    [SerializeField] private Collider clockCollider;
-    [SerializeField] private ScaleLerper _buttonsLerper;
+    public class CipherClockBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    {
+        [FormerlySerializedAs("clockCollider")] [SerializeField] private Collider _clockCollider;
+        [SerializeField] private ScaleLerper _buttonsLerper;
     
-    private bool isInteractable = true;                 // Tracks if the clock can be interacted with
+        private bool _isInteractable = true;                 // Tracks if the clock can be interacted with
 
-    void Start()
-    {
-        if (highlightedClock == null)
+        private void Start()
         {
-            Debug.LogError("HighlightedClock not assigned in CipherClockBehaviour!");
-            return;
-        }
-        clockCollider = GetComponent<BoxCollider>();
-        if (clockCollider == null)
-        {
-            clockCollider = gameObject.AddComponent<BoxCollider>();
-        }
 
-        // Initially hide the highlighted clock and disable interaction
-        highlightedClock.SetActive(false);
-        clockCollider.enabled = false;
-        if (_buttonsLerper != null)
-        {
-            _buttonsLerper.Shrink();
+            _clockCollider = GetComponent<BoxCollider>();
+            if (_clockCollider == null)
+            {
+                _clockCollider = gameObject.AddComponent<BoxCollider>();
+            }
+
+
+            _clockCollider.enabled = false;
+            if (_buttonsLerper != null)
+            {
+                _buttonsLerper.Shrink();
+            }
         }
-    }
     
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!isInteractable) return;
-
-        highlightedClock.SetActive(true);
-        //Debug.Log(eventData.position);
-    }
-    
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (!isInteractable) return;
-
-        highlightedClock.SetActive(false);
-    }
-    
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (!isInteractable) return;
-        isInteractable = false;
-        highlightedClock.SetActive(false);
-        if (_buttonsLerper != null)
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            _buttonsLerper.Grow();
-        }
-    }
+            if (!_isInteractable) return;
 
-    // Public method to enable interaction
-    public void WakeMeUp()
-    {
-        isInteractable = true;
-        clockCollider.enabled = true;
+        }
+    
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!_isInteractable) return;
+
+        }
+    
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!_isInteractable) return;
+            _isInteractable = false;
+            if (_buttonsLerper != null)
+            {
+                _buttonsLerper.Grow();
+            }
+        }
+
+        // Public method to enable interaction
+        public void WakeMeUp()
+        {
+            _isInteractable = true;
+            _clockCollider.enabled = true;
+        }
     }
 }
