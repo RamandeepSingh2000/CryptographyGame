@@ -6,7 +6,7 @@ namespace RollerCoaster
 {
     public class CellSlot : MonoBehaviour, IDropHandler
     {
-        [SerializeField] private string _targetValue;
+        [SerializeField] private char _targetValue;
 
         public void OnDrop(PointerEventData eventData)
         {
