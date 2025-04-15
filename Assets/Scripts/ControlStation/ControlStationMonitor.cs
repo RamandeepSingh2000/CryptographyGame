@@ -9,9 +9,12 @@ public class ControlStationMonitor : MonoBehaviour
     [SerializeField] Material noiseMat;
     [SerializeField] Material desktopMat;
     [SerializeField] ControlStation controlStation;
+    private bool working = false;
     private void Awake()
     {
         controlStation.OnAccessGranted.AddListener(SetDisplayToWorking);
+        controlStation.OnEnterFocus.AddListener(Focus);
+        controlStation.OnExitFocus.AddListener(UnFocus);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,11 +39,24 @@ public class ControlStationMonitor : MonoBehaviour
     public void SetDisplayToStaticNoise()
     {
         displayMeshRenderer.material = noiseMat;
-        PlayStaticNoise();
     }
     public void SetDisplayToWorking()
     {
+        working = true;
         displayMeshRenderer.material = desktopMat;
         PlayMonitorActivateSound();
+    }
+
+    public void Focus()
+    {
+        if (!working)
+        {
+            PlayStaticNoise();
+        }
+    }
+
+    public void UnFocus()
+    {
+        audioSource.Stop();
     }
 }
