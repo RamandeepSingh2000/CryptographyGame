@@ -26,6 +26,7 @@ namespace Cameras
 
         public void SwitchToCamera(int cameraIndex)
         {
+            DisableAllCameras();
             if (cameraIndex >= 0 && cameraIndex < _cameras.Length)
                 _cameras[cameraIndex].enabled = true;
         }
