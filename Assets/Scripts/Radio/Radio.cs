@@ -12,7 +12,6 @@ public class Radio : MonoBehaviour
 
     private void Start()
     {
-        Focus();
         UpdateDisplay();
     }
 

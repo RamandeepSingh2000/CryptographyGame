@@ -13,7 +13,7 @@ namespace Cameras
             DisableAllCameras();
         }
 
-        private void DisableAllCameras()
+        public void DisableAllCameras()
         {
             for (int i = 0; i < _cameras.Length; i++)
                 _cameras[i].enabled = false;
