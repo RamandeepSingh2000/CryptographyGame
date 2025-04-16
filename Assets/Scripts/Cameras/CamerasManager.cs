@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Cameras
 {
@@ -21,6 +22,10 @@ namespace Cameras
 
         [SerializeField] private CinemachineCamera _ferrisWheelCamera;
 
+        public UnityEvent OnMainGameplayCameraFocused;
+        public UnityEvent OnMenuCameraFocused;
+        public UnityEvent OnAnyStationCameraFocused;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -29,26 +34,31 @@ namespace Cameras
         public void ChangeToMainMenuCamera()
         {
             ToggleCameras(CamerasPosition.MainMenu);
+            OnMenuCameraFocused?.Invoke();
         }
 
         public void ChangeToMainGameplayCamera()
         {
             ToggleCameras(CamerasPosition.MainGameplay);
+            OnMainGameplayCameraFocused?.Invoke();
         }
 
         public void ChangeToMerryGoRoundCamera()
         {
             ToggleCameras(CamerasPosition.MerryGoRound);
+            OnAnyStationCameraFocused?.Invoke();
         }
 
         public void ChangeToRollerCoasterCamera()
         {
             ToggleCameras(CamerasPosition.RollerCoaster);
+            OnAnyStationCameraFocused?.Invoke();
         }
 
         public void ChangeToFerrisWheelCamera()
         {
             ToggleCameras(CamerasPosition.FerrisWheel);
+            OnAnyStationCameraFocused?.Invoke();
         }
 
         private void ToggleCameras(CamerasPosition cameraPosition)
