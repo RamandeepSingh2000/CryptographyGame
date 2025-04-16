@@ -24,26 +24,21 @@ namespace CaesarCipher
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            var k = _closeUp ? 0 : _index;
-            _placeCamerasManager.SwitchToCamera(k);
-            _closeUp = !_closeUp;
             if (_closeUp)
             {
-                onFocus?.Invoke();
-                if (currentLookAtMe != null && currentLookAtMe != this)
-                {
-                    currentLookAtMe.UnFocus();
-                }
-                currentLookAtMe = this;
-            }
-            else
-            {
-                if (currentLookAtMe != null && currentLookAtMe != this)
-                {
-                    currentLookAtMe.UnFocus();
-                }
+                _placeCamerasManager.DisableAllCameras();
+                _closeUp = false;
                 onUnfocus?.Invoke();
+                return;
             }
+            _placeCamerasManager.SwitchToCamera(_index);
+            _closeUp = true;
+            if (currentLookAtMe != null && currentLookAtMe != this)
+            {
+                currentLookAtMe.UnFocus();
+            }
+            onFocus?.Invoke();
+            currentLookAtMe = this;
         }
 
         public void UnFocus()
