@@ -34,6 +34,11 @@ public class MenuController : MonoBehaviour
         _achievementsMenu.SetActive(true);
     }
 
+    public void Back()
+    {
+        
+    }
+
     public void Quit()
     {
         Application.Quit();

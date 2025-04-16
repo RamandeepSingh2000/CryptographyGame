@@ -1290,7 +1290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3341212657345715227, guid: 5f6b467f423d13f418816b3a76700b3f, type: 3}
       propertyPath: m_Name
-      value: OpenMainMenuButton
+      value: BackButton
       objectReference: {fileID: 0}
     - target: {fileID: 5140472774283703212, guid: 5f6b467f423d13f418816b3a76700b3f, type: 3}
       propertyPath: m_Pivot.x
