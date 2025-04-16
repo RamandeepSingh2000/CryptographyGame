@@ -7,7 +7,7 @@ public class PlayClue : MonoBehaviour, IPointerClickHandler
     [SerializeField] private AudioClip clueClip;    // The audio clip to play
     [SerializeField] private AudioSource audioSource; // The AudioSource to play the clip
     
-    private Button buttonComponent;                 // Optional: If using a Button instead of raw Image
+    private Button buttonComponent;
 
     void Start()
     {
@@ -47,19 +47,16 @@ public class PlayClue : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            // If no Button, disable the collider or image raycast target
-            Graphic graphic = GetComponent<Graphic>();
+            var graphic = GetComponent<Graphic>();
             if (graphic != null)
             {
                 graphic.raycastTarget = false;
             }
         }
-
-        // Play the clip
+        
         audioSource.PlayOneShot(clueClip);
         Debug.Log($"{name}: Playing clue clip - Duration: {clueClip.length}s");
-
-        // Re-enable after clip finishes
+        
         Invoke(nameof(EnableInteraction), clueClip.length);
     }
 
