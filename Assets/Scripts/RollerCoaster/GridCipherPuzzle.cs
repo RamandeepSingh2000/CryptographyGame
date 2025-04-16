@@ -31,7 +31,7 @@ namespace RollerCoaster
         {
             _foundLettersCount++;
             if (_foundLettersCount == _keyWord.Length)
-                Debug.Log("Cipher puzzle completed!");
+                _textPuzzlesManager.ShowCode(_keyWord);
         }
     }
 }
