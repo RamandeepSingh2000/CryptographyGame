@@ -13,8 +13,8 @@ public class ControlStationMonitor : MonoBehaviour
     private void Awake()
     {
         controlStation.OnAccessGranted.AddListener(SetDisplayToWorking);
-        controlStation.OnEnterFocus.AddListener(Focus);
-        controlStation.OnExitFocus.AddListener(UnFocus);
+        /*controlStation.OnEnterFocus.AddListener(Focus);
+        controlStation.OnExitFocus.AddListener(UnFocus);*/
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -1,5 +1,6 @@
 using System;
 using Cameras;
+using Outline;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
