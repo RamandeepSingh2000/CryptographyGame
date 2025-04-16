@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc03003a6a6c5094a993ffc17b04d3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  rotationSpeed: 10
   isWorking: 0
   axel: {fileID: 3744447183291428064}
 --- !u!1 &1978575889076415547
@@ -4179,6 +4179,10 @@ PrefabInstance:
       propertyPath: secretCode
       value: 1576
       objectReference: {fileID: 0}
+    - target: {fileID: 5161261438455420549, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
+      propertyPath: _placeCamerasManager
+      value: 
+      objectReference: {fileID: 8142861204473979660}
     - target: {fileID: 5161261438455420549, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
       propertyPath: onAccessGranted.m_PersistentCalls.m_Calls.Array.size
       value: 1
