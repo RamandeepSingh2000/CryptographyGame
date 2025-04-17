@@ -8,7 +8,7 @@ namespace Outline
         [SerializeField] private GameObject[] _objectsToOutline;
         [SerializeField] private bool _changeHierarchy = false;
 
-        public bool CanOutline = false;
+        public bool CanOutline = true;
         private int _outlineLayer;
         private int[] _objectsLayers;
 
@@ -26,27 +26,25 @@ namespace Outline
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            EnableOutline();
+            if(!CanOutline) return;
+            ShowOutline(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            DisableOutline();
+            ShowOutline(false);
         }
 
-        public void EnableOutline()
-        {
-            if(!CanOutline) return;
-            ShowOutline(true);
-        }
+        public void EnableOutline() => CanOutline = true;
+        public void DisableOutline() => CanOutline = false;
 
         private void ShowOutline(bool show)
         {
             for (int i = 0; i < _objectsToOutline.Length; i++)
             {
                 if (_changeHierarchy)
-                    _objectsToOutline[i].layer = show ? _outlineLayer : _objectsLayers[i];
-                else SetLayerRecursively(_objectsToOutline[i], show ? _outlineLayer : _objectsLayers[i]);
+                    SetLayerRecursively(_objectsToOutline[i], show ? _outlineLayer : _objectsLayers[i]);
+                else _objectsToOutline[i].layer = show ? _outlineLayer : _objectsLayers[i];
             }
         }
         
@@ -57,11 +55,6 @@ namespace Outline
             {
                 SetLayerRecursively(child.gameObject, layer);
             }
-        }
-
-        public void DisableOutline()
-        {
-            ShowOutline(false);
         }
     }
 }

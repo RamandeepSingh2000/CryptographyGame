@@ -24,6 +24,7 @@ namespace RollerCoaster
 
         public void StartRide()
         {
+            _startMoving = true;
         }
 
         // Update is called once per frame

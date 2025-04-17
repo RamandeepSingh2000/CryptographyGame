@@ -1,3 +1,4 @@
+using System;
 using Cameras;
 using NavKeypad;
 using UnityEngine;
@@ -32,6 +33,12 @@ public class ControlStation : MonoBehaviour
         keypad.OnAccessDenied.AddListener(OnAccessDeniedCallback);
         keypad.OnAccessGranted.AddListener(OnAccessGrantedCallback);
     }
+
+    private void Start()
+    {
+        keypad.ChangeKeypadCombo(secretCode);
+    }
+
     public void EnterFocus()
     {
         OnEnterFocus?.Invoke();

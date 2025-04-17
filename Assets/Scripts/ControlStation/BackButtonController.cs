@@ -9,6 +9,7 @@ public class BackButtonController : MonoBehaviour
     [SerializeField] private CamerasManager _camerasManager;
     [SerializeField] private MenuController _menuController;
     private ControlStation _currentStation = null;
+    private PlaceCamerasManager _currentPlaceCamerasManager = null;
 
     private void Start()
     {
@@ -19,12 +20,26 @@ public class BackButtonController : MonoBehaviour
     private void SelectStation(ControlStation station)
     {
         _currentStation = station;
+        _currentPlaceCamerasManager = station.PlaceCamerasManager;
     }
 
     public void Back()
     {
         if (_currentStation != null)
         {
+            if (_currentPlaceCamerasManager != null)
+            {
+                if (_currentPlaceCamerasManager.IsOnMainCamera)
+                    _currentPlaceCamerasManager = null;
+                else
+                {
+                    _currentPlaceCamerasManager.SwitchToMain();
+                    return;
+                }
+            }
+
+            _currentStation.ExitFocus();
+            _currentStation = null;
             _camerasManager.ChangeToMainGameplayCamera();
         }
         else

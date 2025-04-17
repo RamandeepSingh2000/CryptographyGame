@@ -146,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e251d738d84641b3a59a29d04403a649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlStations: []
+  _controlStations:
+  - {fileID: 0}
   _camerasManager: {fileID: 7043118730777384162}
   _menuController: {fileID: 2064853045165447009}
 --- !u!4 &6759201508886549939 stripped
@@ -276,12 +277,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6147610536150506355, guid: 8a3c260e4943aa341a4662096b4e572d, type: 3}
   m_PrefabInstance: {fileID: 6333467298002400788}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &637939329050964046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6863086172884239962, guid: 8a3c260e4943aa341a4662096b4e572d, type: 3}
+  m_PrefabInstance: {fileID: 6333467298002400788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &953760522365946585 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6546139116169706701, guid: 8a3c260e4943aa341a4662096b4e572d, type: 3}
   m_PrefabInstance: {fileID: 6333467298002400788}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 637939329050964046}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -310,6 +316,98 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2578074346652802658}
     m_Modifications:
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.074
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.009845386
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0012139018
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9575803
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.2879957
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 33.472
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 181.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927781911721802, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.549
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 637939329050964046}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 637939329050964046}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnAnyStationCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 900010498157437889, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
+      propertyPath: OnMainGameplayCameraFocused.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1019840634334619696, guid: 08b4fe287c9c85c409758b1bd63cb4ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.097009
