@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 6142024949223354377}
   - component: {fileID: 459353079123064456}
   - component: {fileID: 2326876899652799758}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: terminal3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,6 +1123,9 @@ MonoBehaviour:
   - {fileID: 4209638865096648445}
   - {fileID: 1310350834228033240}
   - {fileID: 2894994457803296377}
+  OnSwitchToMain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2493124726735970871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1923,7 @@ GameObject:
   - component: {fileID: 670705822075510109}
   - component: {fileID: 4150699494553020685}
   - component: {fileID: 1266587217470850823}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: KArysel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5290,6 +5293,8 @@ GameObject:
   - component: {fileID: 5779110731862469929}
   - component: {fileID: 7384986189297824281}
   - component: {fileID: 1767681786254922021}
+  - component: {fileID: 3118998547992959077}
+  - component: {fileID: 2983737071721529374}
   m_Layer: 0
   m_Name: Base_Karysel
   m_TagString: Untagged
@@ -5305,13 +5310,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9110018256554276375}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 6.123234e-17}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.68326175, y: -0.68326163, z: -0.68326163}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6832618, y: 0.6832618, z: 0.6832618}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4765867513881666475}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!33 &7384986189297824281
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5365,6 +5370,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3118998547992959077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110018256554276375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcd945466300ac44bc79eb56811adbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _index: 0
+  _placeCamerasManager: {fileID: 1638988016741309183}
+  onFocus:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8504972680958440690}
+        m_TargetAssemblyTypeName: ControlStation, Assembly-CSharp
+        m_MethodName: EnterFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onUnfocus:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &2983737071721529374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110018256554276375}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.855406, y: 15.905107, z: 9.948858}
+  m_Center: {x: -1.0065012, y: 3.9625418e-14, z: 4.4744306}
 --- !u!1001 &1782882928756171579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5788,6 +5846,10 @@ PrefabInstance:
       propertyPath: secretCode
       value: 4597
       objectReference: {fileID: 0}
+    - target: {fileID: 5161261438455420549, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
+      propertyPath: _placeCamerasManager
+      value: 
+      objectReference: {fileID: 1638988016741309183}
     - target: {fileID: 5736597770768772208, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
       propertyPath: Priority
       value: 57
@@ -6121,6 +6183,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4946645353358264153, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
   m_PrefabInstance: {fileID: 3578040056384021111}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8504972680958440690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5161261438455420549, guid: fbe8e2b4d56868b469ffb7a6642ccc98, type: 3}
+  m_PrefabInstance: {fileID: 3578040056384021111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d788ec0c8ee8f44a9aac219d2f996c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6031750198441948162
 PrefabInstance:
   m_ObjectHideFlags: 0
